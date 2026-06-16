@@ -104,6 +104,7 @@ ai-recruiter-swarm/
 - [x] Submission Template Filled (`assets/submission.pptx`)
 - [x] Dashboard Mockup (`assets/dashboard-mockup.html`)
 - [x] **Export `submission.pptx` → PDF (`assets/submission.pdf`)**
+- [x] **Submitted on hack2skill (Attempt 1)**
 - [ ] **Grand Finale: 22 July 2026**
 
 > See [ROADMAP.md](./ROADMAP.md) for the full phased plan and [PROGRESS.md](./PROGRESS.md) for detailed progress.
