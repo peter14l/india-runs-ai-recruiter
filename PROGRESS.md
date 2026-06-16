@@ -13,7 +13,7 @@
 | Submission Deadline | 2 July 2026 |
 | Days Remaining | 16 |
 | Phases Complete | 2 / 4 |
-| Tasks Complete | 33 / 43 |
+| Tasks Complete | 34 / 44 |
 | Completion | 77% |
 
 ---
@@ -109,6 +109,7 @@
 - [x] Created detailed agent communication protocol with full message specs
 - [x] Created escalation rules matrix (12 scenarios with severity levels)
 - [x] Created src/ scaffolding with agent stubs and docstrings
+- [x] Built working CLI demo (demo.py) — simulates full agent swarm pipeline end-to-end
 - [x] Created config files (default.yaml, development.yaml)
 - [x] Created requirements.txt with all dependencies
 - [x] Created Makefile for common commands
