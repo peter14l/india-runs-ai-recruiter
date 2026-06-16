@@ -1,7 +1,7 @@
 # Progress Tracker — AI Recruiter Agent Swarm
 
 > Live status of all tasks across phases.
-> Last updated: 16 June 2026
+> Last updated: 16 June 2026 (evening)
 
 ---
 
@@ -13,8 +13,8 @@
 | Submission Deadline | 2 July 2026 |
 | Days Remaining | 16 |
 | Phases Complete | 2 / 4 |
-| Tasks Complete | 29 / 42 |
-| Completion | 69% |
+| Tasks Complete | 33 / 43 |
+| Completion | 77% |
 
 ---
 
@@ -77,19 +77,20 @@
 
 ## Phase 3: Documentation & Submission
 
-**Status: Not Started** | **Deadline: 1 July 2026**
+**Status: In Progress** | **Deadline: 1 July 2026**
 
 | # | Task | Status | Completed | Notes |
 |---|------|--------|-----------|-------|
-| 1 | Final review of documents | PENDING | - | - |
-| 2 | Proofread pitch deck | PENDING | - | - |
-| 3 | Create submission video | PENDING | - | if required |
-| 4 | GitHub repository setup | DONE | 16 June | Initialized |
-| 5 | Write submission description | PENDING | - | - |
-| 6 | Check submission checklist | PENDING | - | - |
-| 7 | Submit | PENDING | - | - |
+| 1 | Final review of documents | DONE | 16 June | All docs reviewed — consistent, complete |
+| 2 | Proofread pitch deck | DONE | 16 June | 12 slides verified, no errors |
+| 3 | Create submission video | PENDING | - | Optional — demo script ready |
+| 4 | GitHub repository setup | DONE | 16 June | Initialized, pushed, all assets committed |
+| 5 | Write submission description | DONE | 16 June | Written in docs/submission-description.md |
+| 6 | Generate PDF pitch deck | DONE | 16 June | Converted from HTML (198 KB) |
+| 7 | Check submission checklist | PENDING | - | - |
+| 8 | Submit on hack2skill portal | PENDING | - | - |
 
-**Blockers:** All prior phases need to be complete
+**Blockers:** None
 
 ---
 
@@ -113,6 +114,17 @@
 - [x] Created Makefile for common commands
 - [x] Completed Phase 0 (Ideation) — 6/6 tasks
 - [x] Completed Phase 1 (Architecture) — 10/10 tasks
+- [x] Created HTML pitch deck (12 slides, professional design)
+- [x] Created HTML dashboard mockup (4 screens)
+- [x] Created demo video script (3:45)
+- [x] Created python-pptx generator script
+- [x] Generated PPTX pitch deck (12 slides, 16:9 widescreen)
+- [x] Completed Phase 2 (Pitch Deck & Visuals) — 10/10 tasks
+- [x] Final review of all documents — consistent and complete
+- [x] Proofread pitch deck content — no errors found
+- [x] Wrote submission description (docs/submission-description.md)
+- [x] Generated PDF pitch deck from HTML (assets/pitch-deck.pdf)
+- [x] Updated PROGRESS.md with Phase 3 status
 
 ---
 
