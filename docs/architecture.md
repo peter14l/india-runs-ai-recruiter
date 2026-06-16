@@ -10,42 +10,64 @@ The AI Recruiter Agent Swarm is a multi-agent system where specialized AI agents
 
 ## Architecture Diagram
 
-`
-                              USER INTERFACE
-                              (Dashboard / API)
-                                    |
-                                    v
-                        +-----------------------+
-                        |   Orchestrator Agent  |
-                        |  (Task Router +       |
-                        |   State Manager +     |
-                        |   Human Escalation)   |
-                        +-----------+-----------+
-                                    |
-             +----------------------+----------------------+
-             |          |          |          |            |
-             v          v          v          v            |
-     +-----------+ +-----------+ +-----------+ +--------+  |
-     |  Sourcer  | |  Matcher  | | Screener | |Scheduler|  |
-     |  Agent    | |  Agent    | | Agent    | | Agent   |  |
-     +-----------+ +-----------+ +-----------+ +--------+  |
-             |          |          |          |            |
-             +----------+----------+----------+------------+
-                                    |
-                        +-----------------------+
-                        |  Memory & Context     |
-                        |  Layer                |
-                        |  (Vector DB +         |
-                        |   Knowledge Graph)    |
-                        +-----------------------+
-                                    |
-                        +-----------------------+
-                        |  External Integrations |
-                        |  (LinkedIn, GitHub,    |
-                        |   Email, Calendar,     |
-                        |   ATS APIs)            |
-                        +-----------------------+
-`
+```mermaid
+graph TB
+    subgraph "User Layer"
+        UI[Recruiter Dashboard]
+        API[External API]
+    end
+
+    subgraph "Orchestration Layer"
+        ORC[Orchestrator Agent]
+        SM[State Manager]
+        HR[Human Escalation Handler]
+    end
+
+    subgraph "Agent Layer"
+        SA[Sourcer Agent]
+        MA[Matcher Agent]
+        SCA[Screener Agent]
+        SCHA[Scheduler Agent]
+    end
+
+    subgraph "Memory & Context Layer"
+        VDB[(Vector DB)]
+        KV[(Cache)]
+        SQL[(Relational DB)]
+        KG[Knowledge Graph]
+    end
+
+    subgraph "Integration Layer"
+        LI[LinkedIn API]
+        GH[GitHub API]
+        NK[Naukri API]
+        CL[Calendar API]
+        EM[Email/WhatsApp]
+        TL[Telephony]
+    end
+
+    UI --> ORC
+    API --> ORC
+    ORC --> SM
+    ORC --> HR
+    ORC --> SA
+    ORC --> MA
+    ORC --> SCA
+    ORC --> SCHA
+    SA --> LI
+    SA --> GH
+    SA --> NK
+    MA --> VDB
+    SCA --> TL
+    SCHA --> CL
+    SCHA --> EM
+    SA --> VDB
+    MA --> SQL
+    SCA --> SQL
+    SCHA --> SQL
+    ORC --> KV
+    ORC --> KG
+```
 
 ---
 

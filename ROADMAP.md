@@ -7,12 +7,12 @@
 
 ## Progress Snapshot
 
-`
-Phase 0: [########..........]  40%  — Ideation & Problem Validation
-Phase 1: [....................]   0%  — Architecture Design
-Phase 2: [....................]   0%  — Pitch Deck & Visuals
+```
+Phase 0: [####################] 100%  — Ideation & Problem Validation
+Phase 1: [####################] 100%  — Architecture Design
+Phase 2: [####................]  20%  — Pitch Deck & Visuals
 Phase 3: [....................]   0%  — Documentation & Submission
-`
+```
 
 ---
 
@@ -51,28 +51,28 @@ Phase 3: [....................]   0%  — Documentation & Submission
 **Goal:** Design complete system architecture with agent specifications
 **Duration:** 5 days
 **Deadline:** 22 June 2026
-**Status:** Not Started
+**Status:** Completed
 
 ### Tasks
 
-- [ ] Design Orchestrator Agent logic (task routing, state management)
-- [ ] Design Sourcer Agent (sources, crawling strategies, de-duplication)
-- [ ] Design Matcher Agent (embedding strategy, scoring algorithm, transferable skill detection)
-- [ ] Design Screener Agent (voice pipeline, question generation, assessment criteria)
-- [ ] Design Scheduler Agent (calendar integration, negotiation logic)
-- [ ] Define agent-to-agent communication protocol
-- [ ] Design Memory & Context Layer (vector DB schema, knowledge graph)
-- [ ] Define escalation rules (when to hand off to humans)
-- [ ] Plan API contracts between agents
-- [ ] Map data flow end-to-end
+- [x] Design Orchestrator Agent logic (task routing, state machine, escalation)
+- [x] Design Sourcer Agent (multi-source crawling, de-duplication, confidence ranking)
+- [x] Design Matcher Agent (5-dimension scoring, transferable skill detection, explainable AI)
+- [x] Design Screener Agent (voice pipeline, Hinglish/regional support, dynamic questioning)
+- [x] Design Scheduler Agent (calendar integration, negotiation, reminders)
+- [x] Define agent-to-agent communication protocol (async message broker, standard envelope)
+- [x] Design Memory & Context Layer (Vector DB schema, Redis cache, PostgreSQL schema)
+- [x] Define escalation rules (12 scenarios, severity matrix, auto-resolution flows)
+- [x] Plan API contracts between agents (full request/response specs for all interactions)
+- [x] Map data flow end-to-end (JD input -> final shortlist)
 
 ### Deliverables
 
-- [ ] System architecture diagram (Mermaid or draw.io)
-- [ ] Agent specification documents
-- [ ] Data flow diagram
-- [ ] API contract definitions
-- [ ] Tech stack decision record
+- [x] System architecture diagram (Mermaid — in docs/diagrams.md)
+- [x] Agent specification documents (docs/agent-specs.md + agent stubs in src/)
+- [x] Data flow diagram (Mermaid — in docs/diagrams.md)
+- [x] API contract definitions (docs/agent-communication.md)
+- [x] Tech stack decision record (docs/tech-stack.md)
 
 ### Key Decisions to Make
 

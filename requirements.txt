@@ -1,0 +1,43 @@
+# AI Recruiter Agent Swarm — Dependencies
+# Core
+crewai>=0.30.0
+langchain>=0.1.0
+langchain-google-genai>=1.0.0
+
+# Embeddings & Vector DB
+sentence-transformers>=2.2.0
+qdrant-client>=1.7.0
+
+# Voice (Sarvam AI)
+sarvamai>=0.1.0
+
+# Backend
+fastapi>=0.109.0
+uvicorn>=0.20.0
+pydantic>=2.0.0
+
+# Async & Message Queue
+redis>=5.0.0
+celery>=5.3.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0
+alembic>=1.13.0
+
+# Utilities
+python-dotenv>=1.0.0
+httpx>=0.25.0
+tenacity>=8.2.0
+
+# Dashboard (demo)
+streamlit>=1.28.0
+plotly>=5.18.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+
+# Development
+black>=24.0.0
+ruff>=0.1.0

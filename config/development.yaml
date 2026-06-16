@@ -1,0 +1,15 @@
+# Development overrides
+
+app:
+  environment: "development"
+
+memory:
+  vector_db:
+    provider: "chromadb"  # simpler for dev, switch to qdrant in prod
+    persist_directory: "./data/chromadb"
+
+agents:
+  sourcer:
+    sources: ["mock"]  # use mock data in dev
+  screener:
+    max_duration_minutes: 5  # shorter in dev

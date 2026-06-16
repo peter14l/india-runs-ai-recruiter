@@ -1,0 +1,70 @@
+# AI Recruiter Agent Swarm — Default Configuration
+
+app:
+  name: "AI Recruiter Agent Swarm"
+  version: "0.1.0"
+  environment: "development"
+
+orchestrator:
+  max_concurrent_pipelines: 10
+  default_escalation_threshold: 0.6  # min confidence before escalating
+  enable_feedback_loop: true
+
+agents:
+  sourcer:
+    sources: ["linkedin", "github", "naukri", "internal_db"]
+    max_results_per_source: 100
+    min_confidence_threshold: 0.5
+    cache_ttl_seconds: 3600
+
+  matcher:
+    scoring:
+      skill_match_weight: 0.40
+      experience_weight: 0.25
+      behavioral_weight: 0.15
+      education_weight: 0.10
+      trajectory_weight: 0.10
+    top_n_for_screening: 10
+    min_score_to_proceed: 60
+
+  screener:
+    max_duration_minutes: 15
+    default_language: "hinglish"
+    retry_attempts: 3
+    retry_interval_hours: 24
+    channels: ["phone", "whatsapp_voice"]
+
+  scheduler:
+    working_hours_start: "09:00"
+    working_hours_end: "18:00"
+    timezone: "Asia/Kolkata"
+    reminder_timings: [24, 1]  # hours before
+    max_negotiation_rounds: 3
+
+memory:
+  vector_db:
+    provider: "qdrant"
+    collection_name: "recruiter_swarm"
+    embedding_dim: 768
+    index_type: "hnsw"
+  cache:
+    provider: "redis"
+    host: "localhost"
+    port: 6379
+
+integrations:
+  linkedin:
+    api_version: "v2"
+    rate_limit_per_hour: 100
+  github:
+    api_version: "2022-11-28"
+    rate_limit_per_hour: 5000
+  telephony:
+    provider: "twilio"
+    default_region: "in1"
+
+security:
+  pii_masking: true
+  encryption_at_rest: true
+  encryption_in_transit: true
+  audit_log_retention_days: 90
