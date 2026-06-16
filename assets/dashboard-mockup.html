@@ -3,232 +3,282 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Mockup — AI Recruiter Agent Swarm</title>
+<title>Recruiter Dashboard — AI Agent Swarm</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', sans-serif; background: #0f172a; padding: 40px; }
-  .mockup-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
-  h2 { color: #e2e8f0; font-size: 24px; margin-bottom: 8px; }
-  h2 .accent { color: #818cf8; }
-  p.caption { color: #64748b; font-size: 14px; margin-bottom: 16px; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: #f6f7f9; padding: 32px; color: #1d1d1f; }
+  .wrapper { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  .page-title { font-size: 20px; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: #8e8e93; }
 
-  /* Screen 1: Dashboard */
   .screen {
-    background: #1e293b; border-radius: 16px; padding: 28px;
-    border: 1px solid rgba(71,85,105,0.3);
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    background: #ffffff; border: 1px solid #e5e5ea;
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .screen-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-  .screen-header h3 { color: #f1f5f9; font-size: 18px; margin: 0; }
-  .screen-header .badge { padding: 6px 12px; border-radius: 8px; background: rgba(52,211,153,0.15); color: #34d399; font-size: 12px; font-weight: 600; }
-  .status-bar { display: flex; gap: 16px; margin-bottom: 24px; }
-  .stat-card { flex: 1; background: rgba(15,23,42,0.5); padding: 16px; border-radius: 10px; text-align: center; }
-  .stat-card .num { font-size: 28px; font-weight: 700; color: #f1f5f9; }
-  .stat-card .label { font-size: 12px; color: #64748b; margin-top: 2px; }
-  .stat-card .num.green { color: #34d399; }
-  .stat-card .num.purple { color: #818cf8; }
-  .stat-card .num.yellow { color: #fbbf24; }
+  .screen-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px; border-bottom: 1px solid #f0f0f3;
+    background: #fafbfc;
+  }
+  .screen-header h3 { font-size: 13px; font-weight: 600; color: #1d1d1f; }
+  .screen-tag { font-size: 11px; font-weight: 500; color: #8e8e93; }
+  .screen-body { padding: 16px 20px; }
 
-  .job-card { background: rgba(15,23,42,0.8); border: 1px solid rgba(71,85,105,0.2); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
-  .job-card:last-child { margin-bottom: 0; }
-  .job-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .job-title { font-size: 15px; font-weight: 600; color: #e2e8f0; }
-  .job-meta { font-size: 12px; color: #64748b; margin-top: 2px; }
-  .job-status { display: flex; align-items: center; gap: 8px; }
-  .status-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .status-dot.green { background: #34d399; }
-  .status-dot.blue { background: #60a5fa; }
-  .status-dot.yellow { background: #fbbf24; }
-  .status-dot.purple { background: #a78bfa; }
-  .status-text { font-size: 12px; font-weight: 500; }
+  /* KPI bar */
+  .kpi-row { display: flex; gap: 4px; margin-bottom: 16px; }
+  .kpi {
+    flex: 1; padding: 12px 16px; background: #fafbfc;
+    border: 1px solid #f0f0f3; border-radius: 6px;
+  }
+  .kpi .num { font-size: 22px; font-weight: 700; color: #1d1d1f; line-height: 1.2; }
+  .kpi .num.purple { color: #5e5ce6; }
+  .kpi .num.green { color: #30b94c; }
+  .kpi .label { font-size: 11px; color: #8e8e93; font-weight: 500; margin-top: 1px; }
 
-  .agent-progress { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
-  .agent-step { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #64748b; }
-  .agent-step.done { color: #34d399; }
-  .agent-step.active { color: #818cf8; }
-  .agent-step.pending { color: #475569; }
-  .step-icon { font-size: 14px; }
+  /* Job rows */
+  .job { padding: 12px 0; border-bottom: 1px solid #f0f0f3; }
+  .job:last-of-type { border-bottom: none; }
+  .job-top { display: flex; justify-content: space-between; align-items: center; }
+  .job-title { font-size: 14px; font-weight: 600; color: #1d1d1f; }
+  .job-meta { font-size: 12px; color: #8e8e93; margin-top: 1px; }
 
-  .candidate-row { display: flex; align-items: center; gap: 14px; padding: 10px 14px; background: rgba(15,23,42,0.5); border-radius: 8px; margin-bottom: 8px; }
-  .candidate-row:last-child { margin-bottom: 0; }
-  .rank { width: 24px; font-weight: 700; color: #64748b; font-size: 13px; }
-  .cand-name { flex: 1; font-size: 14px; font-weight: 500; color: #e2e8f0; }
-  .cand-source { font-size: 11px; color: #475569; }
-  .cand-score { font-size: 14px; font-weight: 700; }
-  .cand-score.high { color: #34d399; }
-  .cand-score.med { color: #fbbf24; }
-  .cand-score.low { color: #f87171; }
-  .score-bar { width: 60px; height: 6px; background: rgba(71,85,105,0.3); border-radius: 3px; overflow: hidden; }
-  .score-bar-fill { height: 100%; border-radius: 3px; }
-  .score-bar-fill.high { background: #34d399; width: 94%; }
-  .score-bar-fill.med { background: #fbbf24; width: 72%; }
-  .score-bar-fill.low { background: #f87171; width: 45%; }
-  .cand-status { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: 500; }
-  .cand-status.scheduled { background: rgba(96,165,250,0.15); color: #60a5fa; }
-  .cand-status.pending { background: rgba(251,191,36,0.15); color: #fbbf24; }
-  .cand-status.assessed { background: rgba(52,211,153,0.15); color: #34d399; }
+  .status-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500;
+  }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-pill.green { background: #eaf9ed; color: #1a8f33; }
+  .status-pill.green .dot { background: #30b94c; }
+  .status-pill.purple { background: #f0efff; color: #5e5ce6; }
+  .status-pill.purple .dot { background: #5e5ce6; }
+  .status-pill.blue { background: #e8f1ff; color: #007aff; }
+  .status-pill.blue .dot { background: #007aff; }
 
-  .screen-label { font-size: 11px; color: #475569; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .agent-strip { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .agent-step { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #c7c7cc; }
+  .agent-step.done { color: #30b94c; }
+  .agent-step.active { color: #5e5ce6; font-weight: 500; }
+  .agent-step .icon { font-size: 12px; }
 
-  .mockup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .eta { font-size: 11px; color: #8e8e93; margin-left: auto; }
+
+  /* Candidate table */
+  .cand-table { width: 100%; border-collapse: collapse; }
+  .cand-table th {
+    text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 600;
+    color: #8e8e93; text-transform: uppercase; letter-spacing: 0.04em;
+    border-bottom: 1px solid #f0f0f3;
+  }
+  .cand-table td {
+    padding: 10px 12px; font-size: 13px; color: #1d1d1f;
+    border-bottom: 1px solid #f8f8fa;
+  }
+  .cand-table tr:last-child td { border-bottom: none; }
+  .cand-table .rank-cell { color: #c7c7cc; font-weight: 500; width: 28px; }
+  .cand-table .name-cell { font-weight: 500; }
+  .cand-table .source-cell { font-size: 11px; color: #8e8e93; }
+  .score { font-weight: 600; }
+  .score.high { color: #30b94c; }
+  .score.med { color: #e6a020; }
+  .score.low { color: #ff3b30; }
+
+  .score-bar { width: 64px; height: 5px; background: #f0f0f3; border-radius: 3px; overflow: hidden; }
+  .score-bar .fill { height: 100%; border-radius: 3px; }
+  .score-bar .fill.high { background: #30b94c; width: 94%; }
+  .score-bar .fill.med { background: #e6a020; width: 72%; }
+  .score-bar .fill.low { background: #ff3b30; width: 45%; }
+
+  .tag-sm {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 500;
+  }
+  .tag-sm.green { background: #eaf9ed; color: #1a8f33; }
+  .tag-sm.blue { background: #e8f1ff; color: #007aff; }
+  .tag-sm.amber { background: #fef5e8; color: #b86c00; }
+
+  .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .dim-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f8f8fa; }
+  .dim-row:last-child { border-bottom: none; }
+  .dim-label { flex: 1; font-size: 13px; color: #3a3a3c; }
+  .dim-score { font-size: 13px; font-weight: 600; color: #1d1d1f; width: 40px; text-align: right; }
+  .dim-bar { width: 80px; height: 5px; background: #f0f0f3; border-radius: 3px; overflow: hidden; }
+  .dim-bar .fill { height: 100%; background: #5e5ce6; border-radius: 3px; }
+
+  .insight { font-size: 12px; color: #3a3a3c; line-height: 1.5; padding: 10px 12px; background: #fafbfc; border-radius: 6px; border: 1px solid #f0f0f3; }
+  .insight strong { color: #1d1d1f; }
+
+  .section-label { font-size: 11px; font-weight: 600; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
 </style>
 </head>
 <body>
-<div class="mockup-container">
-  <h2>Recruiter Dashboard — <span class="accent">Mockups</span></h2>
-  <p class="caption">4 key screens showing the recruiter experience from end to end.</p>
+<div class="wrapper">
+  <div>
+    <div class="page-title">Recruiter Dashboard</div>
+    <div class="page-sub">AI Recruiter Agent Swarm — mockup screens</div>
+  </div>
 
   <!-- Screen 1: Main Dashboard -->
   <div class="screen">
-    <div class="screen-label">Screen 1 of 4</div>
     <div class="screen-header">
-      <h3>Dashboard</h3>
-      <div class="badge">2 active pipelines</div>
+      <h3>Overview</h3>
+      <span class="screen-tag">2 active pipelines</span>
     </div>
-    <div class="status-bar">
-      <div class="stat-card"><div class="num">12</div><div class="label">Active jobs</div></div>
-      <div class="stat-card"><div class="num purple">47</div><div class="label">Candidates shortlisted</div></div>
-      <div class="stat-card"><div class="num green">8</div><div class="label">Screens completed</div></div>
-      <div class="stat-card"><div class="num yellow">3</div><div class="label">Interviews scheduled</div></div>
-    </div>
+    <div class="screen-body">
+      <div class="kpi-row">
+        <div class="kpi"><div class="num">12</div><div class="label">Active jobs</div></div>
+        <div class="kpi"><div class="num purple">47</div><div class="label">Shortlisted</div></div>
+        <div class="kpi"><div class="num green">8</div><div class="label">Screened</div></div>
+        <div class="kpi"><div class="num">3</div><div class="label">Interviews</div></div>
+        <div class="kpi"><div class="num">5d → 10m</div><div class="label">Avg time saved</div></div>
+      </div>
 
-    <div class="job-card">
-      <div class="job-top">
-        <div>
-          <div class="job-title">Senior Full-Stack Developer</div>
-          <div class="job-meta">Bengaluru · 3-7 yrs · Posted 2h ago</div>
+      <div class="job">
+        <div class="job-top">
+          <div>
+            <div class="job-title">Senior Full-Stack Developer</div>
+            <div class="job-meta">Bengaluru · 3–7 yrs · Posted 2h ago · 87 candidates</div>
+          </div>
+          <span class="status-pill green"><span class="dot"></span>Processing</span>
         </div>
-        <div class="job-status">
-          <span class="status-dot green"></span>
-          <span class="status-text" style="color:#34d399;">Processing</span>
+        <div class="agent-strip">
+          <span class="agent-step done"><span class="icon">✓</span> Sourcer</span>
+          <span class="agent-step done"><span class="icon">✓</span> Matcher</span>
+          <span class="agent-step active"><span class="icon">●</span> Screener</span>
+          <span class="agent-step"><span class="icon">○</span> Scheduler</span>
+          <span class="agent-step"><span class="icon">○</span> Review</span>
+          <span class="eta">~4 min remaining</span>
         </div>
       </div>
-      <div class="agent-progress">
-        <span class="agent-step done"><span class="step-icon">✓</span> Sourcer</span>
-        <span class="agent-step done"><span class="step-icon">✓</span> Matcher</span>
-        <span class="agent-step active"><span class="step-icon">●</span> Screener</span>
-        <span class="agent-step pending"><span class="step-icon">○</span> Scheduler</span>
-        <span class="agent-step pending"><span class="step-icon">○</span> Review</span>
-        <span style="color:#475569; font-size:12px; margin-left:8px;">Estimated: 4 min remaining</span>
-      </div>
-    </div>
 
-    <div class="job-card">
-      <div class="job-top">
-        <div>
-          <div class="job-title">Product Manager — AI Products</div>
-          <div class="job-meta">Remote · 4-8 yrs · Posted 1d ago</div>
+      <div class="job">
+        <div class="job-top">
+          <div>
+            <div class="job-title">Product Manager — AI Products</div>
+            <div class="job-meta">Remote · 4–8 yrs · Posted 1d ago · 124 candidates</div>
+          </div>
+          <span class="status-pill purple"><span class="dot"></span>Review Ready</span>
         </div>
-        <div class="job-status">
-          <span class="status-dot purple"></span>
-          <span class="status-text" style="color:#a78bfa;">Review Ready</span>
+        <div class="agent-strip">
+          <span class="agent-step done"><span class="icon">✓</span> Sourcer</span>
+          <span class="agent-step done"><span class="icon">✓</span> Matcher</span>
+          <span class="agent-step done"><span class="icon">✓</span> Screener</span>
+          <span class="agent-step done"><span class="icon">✓</span> Scheduler</span>
+          <span class="agent-step active" style="color:#5e5ce6;"><span class="icon">⬤</span> <strong>Awaiting your review</strong></span>
         </div>
-      </div>
-      <div class="agent-progress">
-        <span class="agent-step done"><span class="step-icon">✓</span> Sourcer</span>
-        <span class="agent-step done"><span class="step-icon">✓</span> Matcher</span>
-        <span class="agent-step done"><span class="step-icon">✓</span> Screener</span>
-        <span class="agent-step done"><span class="step-icon">✓</span> Scheduler</span>
-        <span class="agent-step active"><span class="step-icon">⬤</span> <strong style="color:#818cf8;">Awaiting your review</strong></span>
       </div>
     </div>
   </div>
 
   <!-- Screen 2: Ranked Shortlist -->
   <div class="screen">
-    <div class="screen-label">Screen 2 of 4</div>
     <div class="screen-header">
-      <h3>Ranked Shortlist — Senior Full-Stack Developer</h3>
-      <div class="badge">12 candidates above threshold</div>
+      <h3>Senior Full-Stack Developer · Ranked Shortlist</h3>
+      <span class="screen-tag">12 above threshold</span>
     </div>
-
-    <div class="candidate-row">
-      <span class="rank">#1</span>
-      <span class="cand-name">Anand Kumar <span class="cand-source">LinkedIn</span></span>
-      <div class="score-bar"><div class="score-bar-fill high"></div></div>
-      <span class="cand-score high">94</span>
-      <span class="cand-status assessed">Assessed</span>
-    </div>
-    <div class="candidate-row">
-      <span class="rank">#2</span>
-      <span class="cand-name">Priya Sharma <span class="cand-source">GitHub</span></span>
-      <div class="score-bar"><div class="score-bar-fill high" style="width: 88%"></div></div>
-      <span class="cand-score high">88</span>
-      <span class="cand-status scheduled">Scheduled</span>
-    </div>
-    <div class="candidate-row">
-      <span class="rank">#3</span>
-      <span class="cand-name">Rahul Verma <span class="cand-source">Naukri</span></span>
-      <div class="score-bar"><div class="score-bar-fill med" style="width: 72%"></div></div>
-      <span class="cand-score med">72</span>
-      <span class="cand-status pending">Pending</span>
-    </div>
-    <div class="candidate-row">
-      <span class="rank">#4</span>
-      <span class="cand-name">Sneha Patel <span class="cand-source">LinkedIn</span></span>
-      <div class="score-bar"><div class="score-bar-fill med" style="width: 68%"></div></div>
-      <span class="cand-score med">68</span>
-      <span class="cand-status pending">Pending</span>
-    </div>
-    <div class="candidate-row">
-      <span class="rank">#5</span>
-      <span class="cand-name">Arun Nair <span class="cand-source">Internal DB</span></span>
-      <div class="score-bar"><div class="score-bar-fill low" style="width: 45%"></div></div>
-      <span class="cand-score low">45</span>
-      <span class="cand-status pending">Pending</span>
-    </div>
-
-    <div style="margin-top: 12px; font-size: 12px; color: #64748b; text-align: center;">
-      Click any candidate to view detailed scoring breakdown and assessment report.
+    <div class="screen-body" style="padding:0">
+      <table class="cand-table">
+        <tr><th style="width:32px">#</th><th>Name</th><th>Source</th><th>Match</th><th style="width:80px">Score</th><th style="width:90px">Status</th></tr>
+        <tr>
+          <td class="rank-cell">1</td>
+          <td><span class="name-cell">Anand Kumar</span></td>
+          <td class="source-cell">LinkedIn</td>
+          <td><div class="score-bar"><div class="fill high"></div></div></td>
+          <td><span class="score high">94</span></td>
+          <td><span class="tag-sm green">Assessed</span></td>
+        </tr>
+        <tr>
+          <td class="rank-cell">2</td>
+          <td><span class="name-cell">Priya Sharma</span></td>
+          <td class="source-cell">GitHub</td>
+          <td><div class="score-bar"><div class="fill high" style="width:88%"></div></div></td>
+          <td><span class="score high">88</span></td>
+          <td><span class="tag-sm blue">Scheduled</span></td>
+        </tr>
+        <tr>
+          <td class="rank-cell">3</td>
+          <td><span class="name-cell">Rahul Verma</span></td>
+          <td class="source-cell">Naukri</td>
+          <td><div class="score-bar"><div class="fill med" style="width:72%"></div></div></td>
+          <td><span class="score med">72</span></td>
+          <td><span class="tag-sm amber">Pending</span></td>
+        </tr>
+        <tr>
+          <td class="rank-cell">4</td>
+          <td><span class="name-cell">Sneha Patel</span></td>
+          <td class="source-cell">LinkedIn</td>
+          <td><div class="score-bar"><div class="fill med" style="width:68%"></div></div></td>
+          <td><span class="score med">68</span></td>
+          <td><span class="tag-sm amber">Pending</span></td>
+        </tr>
+        <tr>
+          <td class="rank-cell">5</td>
+          <td><span class="name-cell">Arun Nair</span></td>
+          <td class="source-cell">Internal DB</td>
+          <td><div class="score-bar"><div class="fill low" style="width:45%"></div></div></td>
+          <td><span class="score low">45</span></td>
+          <td><span class="tag-sm amber">Pending</span></td>
+        </tr>
+      </table>
     </div>
   </div>
 
-  <!-- Screen 3: Candidate Detail -->
-  <div class="mockup-grid" style="margin-top: 0;">
+  <!-- Screens 3 & 4: Detail side by side -->
+  <div class="grid-2col">
     <div class="screen">
-      <div class="screen-label">Screen 3 of 4</div>
       <div class="screen-header">
-        <h3>Anand Kumar — Scoring Breakdown</h3>
-        <span class="badge" style="background:rgba(52,211,153,0.15);color:#34d399;">Overall: 94/100</span>
+        <h3>Anand Kumar — Scoring</h3>
+        <span class="screen-tag">Overall 94/100</span>
       </div>
-      <table style="width:100%; border-collapse: collapse; font-size:13px;">
-        <tr><td style="padding:8px 0; color:#94a3b8;">Skill Match</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">38 / 40</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:95%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Experience Relevance</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">23.5 / 25</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:94%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Behavioral Signals</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">14 / 15</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:93%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Education</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">9 / 10</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:90%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Career Trajectory</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">9.7 / 10</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:97%"></div></div></td></tr>
-      </table>
-      <div style="margin-top: 12px; padding: 10px; background: rgba(15,23,42,0.5); border-radius: 8px; font-size: 12px; color: #94a3b8;">
-        <strong style="color:#e2e8f0;">Key strengths:</strong> End-to-end project ownership, microservices migration, active OSS contributor.
-        <br><strong style="color:#fbbf24;">Skill gaps:</strong> Kubernetes (preferred)
-        <br><strong style="color:#818cf8;">Transferable skills detected:</strong> Led 2-person team — management potential
+      <div class="screen-body">
+        <div class="section-label">Dimension Breakdown</div>
+        <div class="dim-row"><span class="dim-label">Skill match</span><div class="dim-bar"><div class="fill" style="width:95%"></div></div><span class="dim-score">38/40</span></div>
+        <div class="dim-row"><span class="dim-label">Experience relevance</span><div class="dim-bar"><div class="fill" style="width:94%"></div></div><span class="dim-score">23.5/25</span></div>
+        <div class="dim-row"><span class="dim-label">Behavioral signals</span><div class="dim-bar"><div class="fill" style="width:93%"></div></div><span class="dim-score">14/15</span></div>
+        <div class="dim-row"><span class="dim-label">Education</span><div class="dim-bar"><div class="fill" style="width:90%"></div></div><span class="dim-score">9/10</span></div>
+        <div class="dim-row"><span class="dim-label">Career trajectory</span><div class="dim-bar"><div class="fill" style="width:97%"></div></div><span class="dim-score">9.7/10</span></div>
+
+        <div style="margin-top: 12px;">
+          <div class="insight">
+            <strong>Strengths:</strong> End-to-end project ownership, microservices migration, active OSS contributor.<br>
+            <strong>Gap:</strong> Kubernetes (preferred skill — not required)<br>
+            <strong>Transferable:</strong> Led 2-person team — management potential flagged
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Screen 4: Assessment Report -->
     <div class="screen">
-      <div class="screen-label">Screen 4 of 4</div>
       <div class="screen-header">
-        <h3>Voice Screening — Assessment</h3>
-        <span class="badge" style="background:rgba(96,165,250,0.15);color:#60a5fa;">Hinglish</span>
+        <h3>Voice Screening · Assessment</h3>
+        <span class="screen-tag">Hinglish · 10m 12s</span>
       </div>
-      <table style="width:100%; border-collapse: collapse; font-size:13px;">
-        <tr><td style="padding:8px 0; color:#94a3b8;">Communication</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">88 / 100</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:88%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Technical Depth</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">92 / 100</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:92%"></div></div></td></tr>
-        <tr><td style="padding:8px 0; color:#94a3b8;">Cultural Fit</td><td style="padding:8px 0; font-weight:600; color:#e2e8f0;">85 / 100</td><td style="padding:8px 0;"><div class="score-bar" style="width:80px;"><div class="score-bar-fill high" style="width:85%"></div></div></td></tr>
-      </table>
-      <div style="margin-top: 12px; font-size:12px; color:#34d399; font-weight:600;">Recommendation: STRONG PROCEED</div>
-      <div style="margin-top: 8px; padding: 10px; background: rgba(15,23,42,0.5); border-radius: 8px; font-size: 12px; color: #94a3b8;">
-        <strong style="color:#e2e8f0;">Key observations:</strong>
-        <br>• Demonstrated strong microservices architecture understanding
-        <br>• Mentioned migration experience NOT on resume — flagged
-        <br>• Natural Hinglish speaker, switched effortlessly between Hindi and English
-        <br>• High enthusiasm for the role
-      </div>
-      <div style="margin-top: 8px; display: flex; gap: 8px;">
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 4px; background: rgba(15,23,42,0.5); color: #64748b;">📄 Transcript</span>
-        <span style="font-size: 11px; padding: 4px 8px; border-radius: 4px; background: rgba(15,23,42,0.5); color: #64748b;">🎵 Recording (10:12)</span>
+      <div class="screen-body">
+        <div class="section-label">Scores</div>
+        <div class="dim-row"><span class="dim-label">Communication</span><div class="dim-bar"><div class="fill" style="width:88%; background:#30b94c"></div></div><span class="dim-score" style="color:#30b94c">88</span></div>
+        <div class="dim-row"><span class="dim-label">Technical depth</span><div class="dim-bar"><div class="fill" style="width:92%; background:#30b94c"></div></div><span class="dim-score" style="color:#30b94c">92</span></div>
+        <div class="dim-row"><span class="dim-label">Cultural fit</span><div class="dim-bar"><div class="fill" style="width:85%; background:#30b94c"></div></div><span class="dim-score" style="color:#30b94c">85</span></div>
+
+        <div style="margin-top: 8px;">
+          <span class="tag-sm green" style="font-size:12px; padding:3px 10px;">Recommendation: Strong Proceed</span>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <div class="insight">
+            <strong>Key observations:</strong><br>
+            • Strong understanding of microservices architecture<br>
+            • Mentioned migration experience not on resume — flagged for human review<br>
+            • Natural Hinglish speaker — switched effortlessly between Hindi and English<br>
+            • High enthusiasm for the role
+          </div>
+        </div>
+
+        <div style="margin-top: 10px; display: flex; gap: 8px;">
+          <span style="font-size: 11px; color: #5e5ce6; font-weight: 500; background: #f0efff; padding: 4px 10px; border-radius: 4px;">Transcript</span>
+          <span style="font-size: 11px; color: #5e5ce6; font-weight: 500; background: #f0efff; padding: 4px 10px; border-radius: 4px;">Recording</span>
+        </div>
       </div>
     </div>
   </div>
