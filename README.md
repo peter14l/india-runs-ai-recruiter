@@ -1,6 +1,7 @@
-# AI Recruiter Agent Swarm
+# AI Recruiter — India Runs Hackathon 2026
 
-> **India Runs Hackathon — Track 2, Challenge 1: AI Systems Architect**
+> **Track 1: Data & AI Challenge** — Candidate Ranking System  
+> **Track 2, Challenge 1: AI Systems Architect** — Multi-Agent Recruiter Swarm  
 > Building what next India runs on.
 
 An autonomous multi-agent AI system that revolutionizes talent acquisition. Instead of traditional keyword-based filtering, this system uses a coordinated **swarm of specialized AI agents** that deeply understand job descriptions, semantically rank candidates, conduct voice-based screenings, and autonomously manage the entire hiring pipeline — from sourcing to shortlisting.
@@ -70,6 +71,7 @@ ai-recruiter-swarm/
 ├── README.md
 ├── ROADMAP.md
 ├── PROGRESS.md
+├── submission_metadata.yaml         # Track 1 metadata (repo root)
 ├── demo.py                          # Working CLI demo — run `python demo.py`
 ├── docs/
 │   ├── architecture.md              # Multi-agent system architecture
@@ -87,6 +89,13 @@ ai-recruiter-swarm/
 │   ├── dashboard-mockup.html        # 4-screen recruiter dashboard mockup
 │   ├── generate_pdf.py              # PDF generation script
 │   └── submission.pptx              # Filled mandatory template (open in PPT to export PDF)
+├── track1/                          # Track 1: Data & AI Challenge
+│   ├── matcher.py                   # Ranking pipeline
+│   ├── requirements.txt             # Dependencies
+│   ├── submission_metadata.yaml     # Track 1 portal metadata
+│   ├── README.md                    # Track 1 documentation
+│   └── output/
+│       └── peter14l.csv             # Generated submission (top 100)
 └── (IDEATHON) Track 1 Submission Template.pptx   # Original template from hack2skill
 ```
 
@@ -94,8 +103,17 @@ ai-recruiter-swarm/
 
 ## 🏁 Submission Status
 
-**Track 2 — Challenge 1: The AI Systems Architect**
+### Track 1 — Data & AI Challenge (Senior AI Engineer Ranking)
+- [x] Dataset downloaded & analyzed (100K candidates, 487 MB)
+- [x] Ranking pipeline built (`track1/matcher.py`)
+- [x] 7-dimensional scoring (skills, JD similarity, experience, title, signals, location, education)
+- [x] Honeypot anomaly detection for impossible profiles
+- [x] **Submission validated: `output/peter14l.csv` (top 100, scores 0.994–0.409)**
+- [x] Code repo ready with README, requirements.txt, metadata
+- [ ] **Submit on hack2skill portal (GitHub repo link)** ← Ready to submit
+- [ ] Deploy sandbox (HuggingFace Spaces / Streamlit)
 
+### Track 2 — Challenge 1: The AI Systems Architect
 - [x] Ideation & Problem Definition
 - [x] Architecture Design (5-agent swarm + orchestrator)
 - [x] Pitch Deck (12-slide PDF + PPTX)

@@ -1,0 +1,60 @@
+# Redrob Hackathon — Submission Metadata
+# Copy to repo root as submission_metadata.yaml
+
+team_name: "peter14l"
+
+primary_contact:
+  name: "peter14l"
+  email: "peter14l@users.noreply.github.com"
+  phone: "+91-XXXXXXXXXX"
+
+team_members:
+  - name: "peter14l"
+    email: "peter14l@users.noreply.github.com"
+    role: "Solo Participant"
+
+github_repo: "https://github.com/peter14l/india-runs-ai-recruiter"
+
+sandbox_link: "https://github.com/peter14l/india-runs-ai-recruiter/tree/main/track1"
+
+reproduce_command: "python matcher.py --candidates ./candidates.jsonl --out ./output/peter14l.csv"
+
+compute:
+  platform: "Local Windows 11 PC"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.14.0"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Claude (via opencode)"
+  - "GitHub Copilot"
+
+ai_usage_summary: |
+  Used Claude via opencode for architecture design, code review, and iterative
+  refinement of scoring dimensions. All scoring logic, honeypot detection, and
+  feature engineering were implemented in collaboration with the AI. No candidate
+  data was fed to any external LLM during the ranking step.
+
+methodology_summary: |
+  Seven-dimensional scoring system for Senior AI Engineer ranking:
+  1. AI Skills Match (25%) — keyword matching against 39 JD-specific AI/ML skills
+  2. JD Semantic Similarity (25%) — TF-IDF cosine similarity between JD and candidate profile
+  3. Experience Fit (15%) — proximity to ideal 5-9 year range
+  4. Title Relevance (12%) — current_title/headline keyword matching for AI/ML roles
+  5. Redrob Signals (10%) — response rate, profile completeness, GitHub activity, recruiter engagement
+  6. Location (8%) — Pune/Noida preferred, other Indian cities acceptable
+  7. Education (5%) — CS/AI/ML fields with tier-1 institution bonus
+  Honeypot penalty applied for impossible career durations or skills/experience mismatch.
+  Score ties broken by candidate_id ascending. Runtime ~108s for 100K candidates.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
