@@ -70,24 +70,43 @@ ai-recruiter-swarm/
 ├── README.md
 ├── ROADMAP.md
 ├── PROGRESS.md
+├── demo.py                          # Working CLI demo — run `python demo.py`
 ├── docs/
-│   ├── architecture.md
-│   ├── agent-specs.md
-│   ├── data-flow.md
-│   ├── tech-stack.md
-│   ├── user-journey.md
-│   └── pitch-deck.md
-├── src/
-│   └── (in future phases)
-└── assets/
-    └── (diagrams, wireframes, etc.)
+│   ├── architecture.md              # Multi-agent system architecture
+│   ├── agent-specs.md               # Detailed agent specifications
+│   ├── data-flow.md                 # Data pipelines & message bus design
+│   ├── tech-stack.md                # Technology choices & rationale
+│   ├── user-journey.md              # End-to-end user journey
+│   ├── demo-video-script.md         # Script for demo video
+│   ├── escalation-rules.md          # 12 human escalation rules
+│   └── submission-description.md    # Ready-to-copy text for hack2skill portal
+├── assets/
+│   ├── pitch-deck.html              # HTML source for 12-slide pitch deck
+│   ├── pitch-deck.pdf               # PDF pitch deck (submission asset)
+│   ├── pitch-deck.pptx              # PPTX pitch deck (secondary)
+│   ├── dashboard-mockup.html        # 4-screen recruiter dashboard mockup
+│   ├── generate_pdf.py              # PDF generation script
+│   └── submission.pptx              # Filled mandatory template (open in PPT to export PDF)
+└── (IDEATHON) Track 1 Submission Template.pptx   # Original template from hack2skill
 ```
 
 ---
 
-## 🛤️ Current Status
+## 🏁 Submission Status
 
-See [ROADMAP.md](./ROADMAP.md) for the full phased plan and [PROGRESS.md](./PROGRESS.md) for real-time progress tracking.
+**Track 2 — Challenge 1: The AI Systems Architect**
+
+- [x] Ideation & Problem Definition
+- [x] Architecture Design (5-agent swarm + orchestrator)
+- [x] Pitch Deck (12-slide PDF + PPTX)
+- [x] Documentation (architecture, specs, data flow, tech stack, user journey)
+- [x] Working CLI Demo (`python demo.py` — full pipeline simulation)
+- [x] Submission Template Filled (`assets/submission.pptx`)
+- [x] Dashboard Mockup (`assets/dashboard-mockup.html`)
+- [ ] **Export `submission.pptx` → PDF and upload to hack2skill**
+- [ ] **Grand Finale: 22 July 2026**
+
+> See [ROADMAP.md](./ROADMAP.md) for the full phased plan and [PROGRESS.md](./PROGRESS.md) for detailed progress.
 
 ---
 
@@ -104,21 +123,36 @@ See [ROADMAP.md](./ROADMAP.md) for the full phased plan and [PROGRESS.md](./PROG
 
 ---
 
-## 🛠️ Built With (Planned Stack)
+## 🛠️ Tech Stack
 
-- **Orchestration:** LangChain / CrewAI / AutoGen
-- **Voice:** Sarvam AI / Bhashini for Hinglish + regional languages
-- **Embeddings:** BGE-M3 / multilingual sentence transformers
-- **Vector DB:** Qdrant / ChromaDB
-- **LLM:** Gemini / GPT-4 / open-source fine-tuned model
-- **Backend:** FastAPI + Python
-- **Frontend:** Streamlit / React (for demo dashboard)
+| Layer | Technology |
+|-------|-----------|
+| Agent Framework | CrewAI / AutoGen |
+| LLM | Gemini 1.5 Pro (primary), GPT-4o (fallback) |
+| Voice | Sarvam AI (STT/TTS), fine-tuned Whisper |
+| Embeddings | BGE-M3 multilingual |
+| Vector DB | Qdrant |
+| Backend | FastAPI + Python |
+| Message Bus | Redis Pub/Sub |
+| Cache | Redis |
+| Storage | PostgreSQL |
+| Communication | Async message bus (standard envelope format)
 
 ---
 
 ## 👤 About Me
 
 A Class 12 graduate proficient in building with AI tools. Participating in **India Runs** by Redrob AI to build what next India runs on.
+
+---
+
+## 🎬 Try the Demo
+
+```bash
+python demo.py
+```
+
+Runs the full 5-agent pipeline simulation in ~8 seconds — shows agent communication logs, scored candidate tables, and final shortlist.
 
 ---
 
