@@ -103,7 +103,7 @@ ai-recruiter-swarm/
 - [x] Working CLI Demo (`python demo.py` — full pipeline simulation)
 - [x] Submission Template Filled (`assets/submission.pptx`)
 - [x] Dashboard Mockup (`assets/dashboard-mockup.html`)
-- [ ] **Export `submission.pptx` → PDF and upload to hack2skill**
+- [x] **Export `submission.pptx` → PDF (`assets/submission.pdf`)**
 - [ ] **Grand Finale: 22 July 2026**
 
 > See [ROADMAP.md](./ROADMAP.md) for the full phased plan and [PROGRESS.md](./PROGRESS.md) for detailed progress.
