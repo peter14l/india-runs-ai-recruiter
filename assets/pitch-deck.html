@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Recruiter Agent Swarm — Pitch Deck</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0f172a; color: #e2e8f0; }
+  .slide {
+    width: 1024px; height: 576px; margin: 20px auto;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 16px; padding: 48px 56px; position: relative;
+    overflow: hidden; page-break-after: always;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  }
+  .slide::before {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .slide-number {
+    position: absolute; bottom: 24px; right: 40px;
+    font-size: 14px; color: #475569; font-weight: 500;
+  }
+  h1 { font-size: 44px; font-weight: 800; color: #f8fafc; line-height: 1.15; letter-spacing: -0.02em; }
+  h1 .accent { color: #818cf8; }
+  h1 .highlight { color: #34d399; }
+  h2 { font-size: 32px; font-weight: 700; color: #f1f5f9; margin-bottom: 16px; letter-spacing: -0.01em; }
+  h2 .accent { color: #818cf8; }
+  h3 { font-size: 20px; font-weight: 600; color: #cbd5e1; margin-bottom: 12px; }
+  p { font-size: 18px; line-height: 1.6; color: #94a3b8; margin-bottom: 12px; }
+  p.white { color: #e2e8f0; }
+  .subtitle { font-size: 20px; color: #64748b; font-weight: 400; margin-top: 8px; }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .tag-ai { background: rgba(99,102,241,0.2); color: #818cf8; }
+  .tag-india { background: rgba(52,211,153,0.2); color: #34d399; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .card {
+    background: rgba(30,41,59,0.8); border: 1px solid rgba(71,85,105,0.3);
+    border-radius: 12px; padding: 20px; transition: all 0.2s;
+  }
+  .card:hover { border-color: rgba(99,102,241,0.4); }
+  .card h4 { font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: #94a3b8; }
+
+  .metric-big { font-size: 36px; font-weight: 800; color: #818cf8; }
+  .metric-big.green { color: #34d399; }
+  .metric-label { font-size: 13px; color: #64748b; font-weight: 500; }
+
+  .table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 12px; }
+  .table th { text-align: left; font-size: 13px; color: #64748b; font-weight: 600; padding: 10px 14px; border-bottom: 1px solid rgba(71,85,105,0.3); }
+  .table td { font-size: 15px; color: #e2e8f0; padding: 10px 14px; border-bottom: 1px solid rgba(71,85,105,0.15); }
+  .table td.gray { color: #94a3b8; }
+  .table tr:last-child td { border-bottom: none; }
+
+  .agent-row { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+  .agent-chip {
+    padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    border: 1px solid rgba(71,85,105,0.4); display: flex; align-items: center; gap: 8px;
+  }
+  .agent-chip .emoji { font-size: 18px; }
+  .agent-chip.orch { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.3); color: #a5b4fc; }
+  .agent-chip.src { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.3); color: #6ee7b7; }
+  .agent-chip.mtch { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.3); color: #fde68a; }
+  .agent-chip.scr { background: rgba(244,114,182,0.15); border-color: rgba(244,114,182,0.3); color: #f9a8d4; }
+  .agent-chip.sch { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.3); color: #7dd3fc; }
+
+  .flow-arrow { text-align: center; padding: 8px 0; color: #475569; font-size: 20px; }
+  .step { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 14px; }
+  .step-num { width: 32px; height: 32px; border-radius: 8px; background: rgba(99,102,241,0.2); color: #818cf8; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .step-content { flex: 1; }
+  .step-content h4 { font-size: 16px; font-weight: 600; color: #e2e8f0; margin-bottom: 2px; }
+  .step-content p { font-size: 14px; color: #64748b; margin-bottom: 0; }
+
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+  .pill-green { background: rgba(52,211,153,0.15); color: #34d399; }
+  .pill-purple { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .pill-yellow { background: rgba(251,191,36,0.15); color: #fbbf24; }
+
+  .footer-line { position: absolute; bottom: 24px; left: 40px; font-size: 12px; color: #475569; }
+
+  @media print {
+    body { background: white; }
+    .slide { box-shadow: none; page-break-after: always; margin: 0; border-radius: 0; width: 100%; height: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide">
+  <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+    <div style="margin-bottom: 8px;">
+      <span class="tag tag-ai">AI SYSTEMS ARCHITECT</span>
+      <span class="tag tag-india" style="margin-left: 8px;">INDIA RUNS 2026</span>
+    </div>
+    <h1>AI Recruiter<br><span class="accent">Agent Swarm</span></h1>
+    <p style="font-size: 22px; color: #94a3b8; margin-top: 12px;">Autonomous multi-agent hiring for the next India</p>
+    <div style="margin-top: 32px; display: flex; gap: 16px; align-items: center;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #818cf8, #6366f1); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: white;">PB</div>
+      <div>
+        <div style="font-weight: 600; color: #e2e8f0;">peter14l</div>
+        <div style="font-size: 13px; color: #64748b;">Builder · India Runs by Redrob AI</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">1 / 12</div>
+</div>
+
+<!-- SLIDE 2: Problem -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">THE PROBLEM</span>
+    <h2 style="margin-top: 12px;">India's hiring is <span class="accent">broken at scale</span></h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="metric-big">500+</div>
+        <div class="metric-label">Applications per role</div>
+        <p>95% are irrelevant — recruiters drown in noise</p>
+      </div>
+      <div class="card">
+        <div class="metric-big">60%</div>
+        <div class="metric-label">Time spent screening</div>
+        <p>Not hiring. Not interviewing. Just filtering.</p>
+      </div>
+      <div class="card">
+        <div class="metric-big green">Hidden</div>
+        <div class="metric-label">Non-obvious talent</div>
+        <p>Good candidates from Tier 2/3 cities, non-IIT, non-English backgrounds get missed</p>
+      </div>
+    </div>
+    <div style="margin-top: 24px;">
+      <div class="card" style="border-color: rgba(239,68,68,0.2);">
+        <h4>Current AI tools are black boxes</h4>
+        <p>They reject candidates without explanation. No transparency, no trust, no improvement loop. Keyword filters miss transferable skills entirely.</p>
+      </div>
+    </div>
+    <p style="margin-top: 16px; font-size: 14px; color: #475569;">India's recruitment market: $2B+ and growing 15% YoY — core tech hasn't changed in a decade.</p>
+  </div>
+  <div class="slide-number">2 / 12</div>
+</div>
+
+<!-- SLIDE 3: Why Now -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-india">WHY NOW</span>
+    <h2 style="margin-top: 12px;">Three forces make this <span class="highlight">possible today</span></h2>
+    <div class="grid-3" style="margin-top: 24px;">
+      <div class="card">
+        <h4>AI Maturity</h4>
+        <p>LLMs can reason, plan, and use tools. Multi-agent frameworks are production-ready (CrewAI, AutoGen). Voice AI in Indian languages works (Sarvam, Bhashini).</p>
+      </div>
+      <div class="card">
+        <h4>India's Talent Boom</h4>
+        <p>1.5M+ engineers graduate annually. Tier 2/3 cities produce world-class talent. Remote work demands location-agnostic hiring.</p>
+      </div>
+      <div class="card">
+        <h4>Redrob's Mission</h4>
+        <p>Building India's AI OS for work. AI-native hiring is the foundational layer. Built for India, in India — not a Silicon Valley port.</p>
+      </div>
+    </div>
+    <div style="margin-top: 24px; text-align: center; padding: 16px; background: rgba(99,102,241,0.08); border-radius: 12px; border: 1px solid rgba(99,102,241,0.15);">
+      <p style="font-size: 15px; color: #c7d2fe; margin: 0;"><strong>This combination of AI maturity, market need, and platform timing has never existed before.</strong></p>
+    </div>
+  </div>
+  <div class="slide-number">3 / 12</div>
+</div>
+
+<!-- SLIDE 4: Solution Overview -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">THE SOLUTION</span>
+    <h2 style="margin-top: 12px;">Enter the <span class="accent">AI Recruiter Agent Swarm</span></h2>
+    <p style="font-size: 16px;">5 specialized AI agents + 1 Orchestrator. From JD to shortlist in under 10 minutes.</p>
+    <div class="agent-row">
+      <div class="agent-chip orch"><span class="emoji">🧠</span> Orchestrator</div>
+      <div class="agent-chip src"><span class="emoji">🔍</span> Sourcer</div>
+      <div class="agent-chip mtch"><span class="emoji">⚖️</span> Matcher</div>
+      <div class="agent-chip scr"><span class="emoji">🎙️</span> Screener</div>
+      <div class="agent-chip sch"><span class="emoji">📅</span> Scheduler</div>
+    </div>
+    <table class="table">
+      <tr><th>Agent</th><th>Role</th><th>What it does</th></tr>
+      <tr><td><strong style="color:#a5b4fc;">Orchestrator</strong></td><td>Brain</td><td class="gray">Routes tasks, manages state, decides when to escalate</td></tr>
+      <tr><td><strong style="color:#6ee7b7;">Sourcer</strong></td><td>Scout</td><td class="gray">Searches LinkedIn, GitHub, Naukri, internal DBs autonomously</td></tr>
+      <tr><td><strong style="color:#fde68a;">Matcher</strong></td><td>Judge</td><td class="gray">Semantic ranking, transferable skill detection, explainable scores</td></tr>
+      <tr><td><strong style="color:#f9a8d4;">Screener</strong></td><td>Interviewer</td><td class="gray">Voice calls in Hinglish, dynamic questioning, sentiment analysis</td></tr>
+      <tr><td><strong style="color:#7dd3fc;">Scheduler</strong></td><td>Coordinator</td><td class="gray">Calendar sync, negotiation, reminders, feedback collection</td></tr>
+    </table>
+    <p style="margin-top: 12px; font-size: 14px; color: #818cf8; font-weight: 500;">No more black boxes. Every decision explained. Every candidate gets a fair shot.</p>
+  </div>
+  <div class="slide-number">4 / 12</div>
+</div>
+
+<!-- SLIDE 5: How It Works -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">HOW IT WORKS</span>
+    <h2 style="margin-top: 12px;">From JD to shortlist in <span class="accent">under 10 minutes</span></h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 20px;">
+      <div>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content"><h4>JD Submitted</h4><p>Recruiter pastes the job description → Orchestrator parses and activates swarm</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content"><h4>Sourcing</h4><p>Sourcer Agent searches 4+ sources simultaneously (LinkedIn, GitHub, Naukri, internal)</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content"><h4>Matching</h4><p>Matcher Agent scores candidates on 5 dimensions with explainable AI reasoning</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content"><h4>Screening</h4><p>Screener Agent conducts voice calls in Hinglish — dynamic, natural, contextual</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content"><h4>Scheduling</h4><p>Scheduler Agent books interviews in one click — no email tennis</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content"><h4>Review</h4><p>Recruiter reviews top candidates with full transparency and scoring breakdown</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">5 / 12</div>
+</div>
+
+<!-- SLIDE 6: Architecture -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">ARCHITECTURE</span>
+    <h2 style="margin-top: 12px;">Clean, scalable <span class="accent">multi-agent system</span></h2>
+    <div style="display: flex; gap: 24px; margin-top: 16px;">
+      <div style="flex: 1;">
+        <pre style="background: rgba(15,23,42,0.8); padding: 16px; border-radius: 10px; font-size: 11px; line-height: 1.5; color: #94a3b8; border: 1px solid rgba(71,85,105,0.2); font-family: 'Inter', monospace;">
+  ┌──────────────────────────────┐
+  │       Recruiter Dashboard    │
+  └─────────────┬────────────────┘
+                ▼
+  ┌──────────────────────────────┐
+  │     Orchestrator Agent       │
+  │  (Task Router + State Mgr +  │
+  │      Human Escalation)       │
+  └────┬────┬────┬────┬──────────┘
+       │    │    │    │
+       ▼    ▼    ▼    ▼
+  ┌──┐ ┌──┐ ┌──┐ ┌──┐
+  │S │ │M │ │Sc│ │Sch│
+  │o │ │a │ │re│ │ed │
+  │ur│ │tc│ │en│ │ul │
+  │ce│ │he│ │er│ │er │
+  │r │ │r │ │  │ │   │
+  └──┘ └──┘ └──┘ └──┘
+       │    │    │    │
+       └────┴────┴────┘
+                ▼
+  ┌──────────────────────────────┐
+  │   Memory & Context Layer     │
+  │  (Qdrant + Redis + Postgres) │
+  └──────────────────────────────┘
+        </pre>
+      </div>
+      <div style="flex: 0 0 200px;">
+        <div class="card" style="margin-bottom: 8px;"><h4>Agent Framework</h4><p>CrewAI</p></div>
+        <div class="card" style="margin-bottom: 8px;"><h4>LLM</h4><p>Gemini 1.5 Pro</p></div>
+        <div class="card" style="margin-bottom: 8px;"><h4>Voice</h4><p>Sarvam AI</p></div>
+        <div class="card" style="margin-bottom: 8px;"><h4>Vector DB</h4><p>Qdrant</p></div>
+        <div class="card"><h4>Embeddings</h4><p>BGE-M3</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">6 / 12</div>
+</div>
+
+<!-- SLIDE 7: Key Differentiator -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-india">KEY DIFFERENTIATOR</span>
+    <h2 style="margin-top: 12px;">Voice screening that speaks <span class="highlight">India's language</span></h2>
+    <div class="grid-2" style="margin-top: 20px;">
+      <div class="card" style="border-color: rgba(71,85,105,0.3);">
+        <h4 style="color: #94a3b8;">Traditional Screening</h4>
+        <p style="font-size: 13px;">Text-only, English-only, rigid Q&A</p>
+        <div style="margin-top: 12px; font-size: 13px; color: #64748b;">
+          ❌ Filters out great candidates who lack English fluency<br>
+          ❌ Misses communication nuance and confidence<br>
+          ❌ Feels robotic and impersonal
+        </div>
+      </div>
+      <div class="card" style="border-color: rgba(52,211,153,0.3);">
+        <h4 style="color: #34d399;">Our Screener Agent</h4>
+        <p style="font-size: 13px;">Voice-first, multilingual, adaptive conversation</p>
+        <div style="margin-top: 12px; font-size: 13px; color: #94a3b8;">
+          ✅ Natural conversation in Hinglish, Hindi, English, regional languages<br>
+          ✅ Dynamic questioning that adapts to responses<br>
+          ✅ Evaluates communication, confidence, cultural fit
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 24px; background: rgba(52,211,153,0.06); padding: 16px 20px; border-radius: 12px; border: 1px solid rgba(52,211,153,0.12);">
+      <div style="text-align: center;">
+        <div class="metric-big green">80%</div>
+        <div class="metric-label">of Indians prefer</div>
+        <div class="metric-label">native language</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="metric-big green">+34%</div>
+        <div class="metric-label">Assessment accuracy</div>
+        <div class="metric-label">with voice vs text-only</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="metric-big green">Removes</div>
+        <div class="metric-label">English fluency bias</div>
+        <div class="metric-label">from early-stage filtering</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">7 / 12</div>
+</div>
+
+<!-- SLIDE 8: Impact -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">IMPACT</span>
+    <h2 style="margin-top: 12px;">What this means for a <span class="accent">hiring team</span></h2>
+    <table class="table" style="margin-top: 20px;">
+      <tr><th>Metric</th><th>Before (Traditional ATS)</th><th>After (Agent Swarm)</th></tr>
+      <tr><td><strong>Time to shortlist</strong></td><td class="gray">5-7 days</td><td><strong style="color:#34d399;">10 minutes</strong></td></tr>
+      <tr><td><strong>Recruiter screening time</strong></td><td class="gray">60% of workday</td><td><strong style="color:#34d399;">10% of workday</strong></td></tr>
+      <tr><td><strong>Candidates evaluated</strong></td><td class="gray">50-100 per role</td><td><strong style="color:#34d399;">500+ (all applicants)</strong></td></tr>
+      <tr><td><strong>Candidate experience</strong></td><td class="gray">Generic, slow, English-only</td><td><strong style="color:#34d399;">Personalized, fast, multilingual</strong></td></tr>
+      <tr><td><strong>Decision transparency</strong></td><td class="gray">Black box — no explanation</td><td><strong style="color:#34d399;">Full reasoning per candidate</strong></td></tr>
+    </table>
+    <div style="margin-top: 24px; text-align: center; padding: 16px; background: rgba(99,102,241,0.06); border-radius: 12px;">
+      <p style="font-size: 24px; font-weight: 700; color: #818cf8; margin: 0;">~70% reduction in cost-per-hire</p>
+      <p style="font-size: 14px; color: #64748b; margin-top: 4px;">for mid-to-senior roles</p>
+    </div>
+  </div>
+  <div class="slide-number">8 / 12</div>
+</div>
+
+<!-- SLIDE 9: Market -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-india">MARKET OPPORTUNITY</span>
+    <h2 style="margin-top: 12px;">Built for Redrob, relevant for <span class="highlight">everyone</span></h2>
+    <div class="grid-3" style="margin-top: 24px;">
+      <div class="card" style="border-color: rgba(99,102,241,0.2);">
+        <h4>Redrob Integration</h4>
+        <p>Native AI hiring layer for India's AI OS. Directly aligns with Redrob's mission of being India's AI super app for work.</p>
+      </div>
+      <div class="card" style="border-color: rgba(52,211,153,0.2);">
+        <h4>Enterprise SaaS</h4>
+        <p>Standalone product for Indian companies (200-5000 employees). Plug-and-play with existing ATS systems.</p>
+      </div>
+      <div class="card" style="border-color: rgba(251,191,36,0.2);">
+        <h4>API-First</h4>
+        <p>Embeddable agent swarm for any ATS platform. White-label options for recruitment agencies.</p>
+      </div>
+    </div>
+    <div style="margin-top: 24px; display: flex; gap: 32px; justify-content: center;">
+      <div style="text-align: center;">
+        <div class="metric-big">$2B+</div>
+        <div class="metric-label">India recruitment software TAM by 2027</div>
+      </div>
+      <div style="text-align: center;">
+        <div class="metric-big green">500</div>
+        <div class="metric-label">Mid-size Indian companies — initial target</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">9 / 12</div>
+</div>
+
+<!-- SLIDE 10: Roadmap -->
+<div class="slide">
+  <div style="position: relative; z-index: 1;">
+    <span class="tag tag-ai">ROADMAP</span>
+    <h2 style="margin-top: 12px;">Beyond the <span class="accent">hackathon</span></h2>
+    <div style="display: flex; gap: 16px; margin-top: 24px;">
+      <div class="card" style="flex: 1; border-top: 3px solid #818cf8;">
+        <div style="font-size: 12px; color: #818cf8; font-weight: 600; margin-bottom: 4px;">Q3 2026</div>
+        <h4>PoC</h4>
+        <p>Core swarm working with synthetic data. Basic orchestrator + matcher + mock sources.</p>
+      </div>
+      <div class="card" style="flex: 1; border-top: 3px solid #34d399;">
+        <div style="font-size: 12px; color: #34d399; font-weight: 600; margin-bottom: 4px;">Q4 2026</div>
+        <h4>MVP</h4>
+        <p>Live with 5 beta customers. 1 source (LinkedIn), 3 agents (Orch + Sourcer + Matcher).</p>
+      </div>
+      <div class="card" style="flex: 1; border-top: 3px solid #fbbf24;">
+        <div style="font-size: 12px; color: #fbbf24; font-weight: 600; margin-bottom: 4px;">Q1 2027</div>
+        <h4>Growth</h4>
+        <p>4+ sources, all 5 agents, voice screening in Hinglish, production deployment.</p>
+      </div>
+      <div class="card" style="flex: 1; border-top: 3px solid #f472b6;">
+        <div style="font-size: 12px; color: #f472b6; font-weight: 600; margin-bottom: 4px;">Q2 2027</div>
+        <h4>Scale</h4>
+        <p>Multi-lingual voice, learning loop from feedback, enterprise features, API marketplace.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">10 / 12</div>
+</div>
+
+<!-- SLIDE 11: About Me -->
+<div class="slide">
+  <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+    <span class="tag tag-india">ABOUT ME</span>
+    <h2 style="margin-top: 12px;">Builder, not just a <span class="highlight">presenter</span></h2>
+    <div style="display: flex; gap: 32px; margin-top: 24px; align-items: center;">
+      <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #818cf8, #6366f1); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 40px; color: white; flex-shrink: 0;">PB</div>
+      <div>
+        <p style="font-size: 18px; color: #e2e8f0; margin-bottom: 8px;">Class 12 graduate · Proficient in building with AI tools</p>
+        <p style="font-size: 15px;">I just experienced the hiring process as a candidate. I know firsthand how broken it feels on the other side. This isn't a theoretical problem for me — it's personal.</p>
+        <p style="font-size: 15px; color: #818cf8; font-weight: 500; margin-top: 12px;">Building for India — where I live, study, and will work.</p>
+      </div>
+    </div>
+    <div style="margin-top: 32px; text-align: center;">
+      <p style="font-size: 20px; color: #f1f5f9; font-weight: 600; margin: 0;">"I'm not here to pitch. I'm here to build what next India runs on."</p>
+    </div>
+  </div>
+  <div class="slide-number">11 / 12</div>
+</div>
+
+<!-- SLIDE 12: Thank You -->
+<div class="slide">
+  <div style="position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <h1>Thank <span class="accent">You</span></h1>
+    <p style="font-size: 22px; color: #94a3b8; margin-top: 8px;">Let's build India's AI-native hiring layer</p>
+    <div style="margin-top: 32px;">
+      <div style="margin-bottom: 8px;"><span style="color: #64748b;">GitHub:</span> <span style="color: #818cf8; font-weight: 500;">github.com/peter14l/india-runs-ai-recruiter</span></div>
+      <div style="margin-bottom: 8px;"><span style="color: #64748b;">Event:</span> <span style="color: #e2e8f0;">India Runs by Redrob AI</span></div>
+      <div><span style="color: #64748b;">Track:</span> <span style="color: #e2e8f0;">Challenge 1 — AI Systems Architect</span></div>
+    </div>
+    <div style="margin-top: 32px; display: flex; gap: 8px;">
+      <span class="tag tag-ai">#IndiaRuns</span>
+      <span class="tag tag-india">#RedrobAI</span>
+      <span class="tag tag-ai">#AIAgentSwarm</span>
+    </div>
+  </div>
+  <div class="slide-number">12 / 12</div>
+</div>
+
+</body>
+</html>

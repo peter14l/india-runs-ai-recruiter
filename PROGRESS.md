@@ -12,9 +12,9 @@
 | Start Date | 16 June 2026 |
 | Submission Deadline | 2 July 2026 |
 | Days Remaining | 16 |
-| Phases Complete | 1 / 4 |
-| Tasks Complete | 19 / 42 |
-| Completion | 45% |
+| Phases Complete | 2 / 4 |
+| Tasks Complete | 29 / 42 |
+| Completion | 69% |
 
 ---
 
@@ -56,22 +56,22 @@
 
 ## Phase 2: Pitch Deck & Visuals
 
-**Status: Not Started** | **Deadline: 27 June 2026**
+**Status: Completed** | **Deadline: 27 June 2026**
 
 | # | Task | Status | Completed | Notes |
 |---|------|--------|-----------|-------|
-| 1 | Structure pitch deck | PENDING | - | - |
-| 2 | Slide-by-slide content | DONE | 16 June | Content written in docs/pitch-deck.md |
-| 3 | Architecture diagram | DONE | 16 June | Mermaid diagrams in docs/diagrams.md |
+| 1 | Structure pitch deck | DONE | 16 June | 12-slide story arc: Problem -> Solution -> Architecture -> Impact |
+| 2 | Slide-by-slide content | DONE | 16 June | Full content in docs/pitch-deck.md |
+| 3 | Architecture diagram | DONE | 16 June | Mermaid diagrams in docs/diagrams.md + architecture.md |
 | 4 | Agent interaction diagram | DONE | 16 June | Sequence diagrams in docs/diagrams.md |
 | 5 | User journey map | DONE | 16 June | Persona walkthrough in docs/user-journey.md |
-| 6 | Mockups / wireframes | PENDING | - | - |
+| 6 | Mockups / wireframes | DONE | 16 June | HTML dashboard mockup (4 screens) in assets/dashboard-mockup.html |
 | 7 | Problem narrative | DONE | 16 June | Written in pitch-deck.md slides 2-3 |
 | 8 | Impact quantification | DONE | 16 June | Metrics table in pitch-deck.md slide 8 |
 | 9 | Future roadmap | DONE | 16 June | In pitch-deck.md slide 10 |
-| 10 | Demo video script | PENDING | - | - |
+| 10 | Demo video script | DONE | 16 June | Full script with timestamps in docs/demo-video-script.md |
 
-**Blockers:** None — content is ready, needs PDF conversion + mockups
+**Blockers:** None — fully ready
 
 ---
 
